@@ -1,0 +1,20 @@
+.masthead {
+  height: 60vh;
+  min-height: 500px;
+  background-image: url('../img/NAP-cell.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.tales {
+  width: 100%;
+}
+.carousel-item{
+  width:100%;
+  max-height: 700px !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}
