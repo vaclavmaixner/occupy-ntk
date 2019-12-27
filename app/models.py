@@ -14,4 +14,3 @@ class Occupation(db.Model):
 
     def __repr__(self):
         return '<Occupation {}>'.format(self.timestamp)
-
