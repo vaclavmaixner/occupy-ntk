@@ -10,9 +10,17 @@
     </div>
     <br>
     <div class="row">
-        <div class="col-sm-3">Floor 6: <span class="text-muted inline-block" data-toggle="tooltip" title="Silent floor"><i class="fas fa-question-circle"></i></span> </div>
-        <div class="col-sm-3">
-            <p> {{ percentages[0] }} % ({{ occupation.floor_6 }} / 323
+        <div class="col-sm-2">Floor 6:
+            <span class="text-muted inline-block" data-toggle="tooltip" title="Silent floor">
+                <i class="fas fa-question-circle"></i>
+            </span>
+        </div>
+        <div class="col-sm-1">
+            <p> {{ percentages[0] }} %
+            </p>
+        </div>
+        <div class="col-sm-2">
+            <p> ({{ occupation.floor_6 }} / 323
                 <i class="fas fa-male"></i>)
             </p>
         </div>
@@ -52,7 +60,11 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-3">Floor 3: <span class="text-muted inline-block" data-toggle="tooltip" title="Silent floor"><i class="fas fa-question-circle"></i></span> </div>
+        <div class="col-sm-3">Floor 3:
+            <span class="text-muted inline-block" data-toggle="tooltip" title="Silent floor">
+                <i class="fas fa-question-circle"></i>
+            </span>
+        </div>
         <div class="col-sm-3">
             <p> {{ percentages[3] }} % ({{ occupation.floor_3 }} / 331
                 <i class="fas fa-male"></i>)
@@ -62,6 +74,101 @@
             <div class="progress" style="height: 20px;">
                 <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{ percentages[3] }}%;"
                     aria-valuenow='0' aria-valuemin="0" aria-valuemax="100">{{ percentages[3] }} %</div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Floor #</th>
+                        <th scope="col">Occupation</th>
+                        <th scope="col">No. of people</th>
+                        <th scope="col">Nice graphs
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">6th
+                            <span class="text-muted inline-block ml-1" data-toggle="tooltip" title="Silent floor">
+                                <i class="fas fa-volume-off"></i>
+                            </span>
+                        </th>
+                        <td>{{ percentages[0] }} % </td>
+                        <td>{{ occupation.floor_6 }} / 323
+                            <i class="fas fa-male"></i>
+                        </td>
+                        <td>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{ percentages[0] }}%;"
+                                    aria-valuenow='0' aria-valuemin="0" aria-valuemax="100">{{ percentages[0] }} %</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5th
+                            <span class="text-muted inline-block ml-1" data-toggle="tooltip" title="Non-silent floor">
+                                <i class="fas fa-volume-down"></i>
+                            </span>
+                        </th>
+                        <td>{{ percentages[1] }} %</td>
+                        <td>{{ occupation.floor_5 }} / 275
+                            <i class="fas fa-male"></i>
+                        </td>
+                        <td>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{ percentages[1] }}%;"
+                                    aria-valuenow='0' aria-valuemin="0" aria-valuemax="100">{{ percentages[1] }} %</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4th
+                            <span class="text-muted inline-block ml-1" data-toggle="tooltip" title="Non-silent floor">
+                                <i class="fas fa-volume-down"></i>
+                            </span>
+                        </th>
+                        <td>{{ percentages[2] }} %</td>
+                        <td>{{ occupation.floor_4 }} / 333
+                            <i class="fas fa-male"></i>
+                        </td>
+                        <td>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{ percentages[2] }}%;"
+                                    aria-valuenow='0' aria-valuemin="0" aria-valuemax="100">{{ percentages[2] }} %</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3rd
+                            <span class="text-muted inline-block ml-1" data-toggle="tooltip" title="Silent floor">
+                                <i class="fas fa-volume-off"></i>
+                            </span>
+                        </th>
+                        <td>{{ percentages[3] }} %</td>
+                        <td>{{ occupation.floor_3 }} / 331
+                            <i class="fas fa-male"></i>
+                        </td>
+                        <td>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{ percentages[3] }}%;"
+                                    aria-valuenow='0' aria-valuemin="0" aria-valuemax="100">{{ percentages[3] }} %</div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-6">
+            <div class="progress" style="height: 20px;">
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{ percentages[0] }}%;"
+                    aria-valuenow='0' aria-valuemin="0" aria-valuemax="100">{{ percentages[0] }} %</div>
             </div>
         </div>
     </div>
