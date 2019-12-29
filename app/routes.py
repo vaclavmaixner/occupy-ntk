@@ -32,20 +32,19 @@ def index():
 
     soup = BeautifulSoup(r.text, 'html.parser')
 
-    occupation = soup.find_all('div', {'class': 'progress-bar'})
-    no_people = scraper_task.scrape(occupation)[0]
-    percentages = scraper_task.scrape(occupation)[1]
-    overall_occ = scraper_task.scrape(occupation)[2]
-    sum_of_people = scraper_task.scrape(occupation)[3]
-    # scraper_task.push_to_db(floors_people)
-    occupation = Occupation(
-        floor_6=no_people[0], floor_5=no_people[1], floor_4=no_people[2], floor_3=no_people[3])
-    # db.session.add(occupation)
-    # db.session.commit()
+    # occupation = soup.find_all('div', {'class': 'progress-bar'})
+    # no_people = scraper_task.scrape(occupation)[0]
+    # percentages = scraper_task.scrape(occupation)[1]
+    # overall_occ = scraper_task.scrape(occupation)[2]
+    # sum_of_people = scraper_task.scrape(occupation)[3]
+    # occupation = Occupation(
+    #     floor_6=no_people[0], floor_5=no_people[1], floor_4=no_people[2], floor_3=no_people[3])
 
+    occupations = Occupation.query.order_by(Occupation.id.desc()).limit(1)
+    occupation = occupations[0]
     history = Occupation.query.order_by(Occupation.id.desc()).limit(10)
 
-    return render_template('index.html', occupation=occupation, percentages=percentages, overall_occ=overall_occ, sum_of_people=sum_of_people, history=history)
+    return render_template('index.html', occupation=occupation, history=history)
 # return 'hello'
 
 @app.route('/plot', methods=["GET"])

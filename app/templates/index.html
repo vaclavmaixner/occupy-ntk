@@ -1,169 +1,144 @@
 {% extends "base.html" %} {% block content %}
 <div class="container mt-2">
-    <h2>Now</h2>
-    <p> Overall occupation: {{ overall_occ }} % (<b>{{ sum_of_people }}</b> / 1262
-        <i class="fas fa-male"></i>)
-    </p>
-    <div class="progress" style="height: 20px;">
-        <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{ overall_occ }}%;"
-            aria-valuenow='0' aria-valuemin="0" aria-valuemax="100">{{ overall_occ }} %</div>
-    </div>
-    <br>
-    <!-- <div class="row">
-        <div class="col-sm-2">Floor 6:
-            <span class="text-muted inline-block" data-toggle="tooltip" title="Silent floor">
-                <i class="fas fa-question-circle"></i>
-            </span>
-        </div>
-        <div class="col-sm-1">
-            <p> {{ percentages[0] }} %
-            </p>
-        </div>
-        <div class="col-sm-2">
-            <p> ({{ occupation.floor_6 }} / 323
-                <i class="fas fa-male"></i>)
-            </p>
-        </div>
-        <div class="col-sm-6">
-            <div class="progress" style="height: 20px;">
-                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{ percentages[0] }}%;"
-                    aria-valuenow='0' aria-valuemin="0" aria-valuemax="100">{{ percentages[0] }} %</div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-3">Floor 5: </div>
-        <div class="col-sm-3">
-            <p> {{ percentages[1] }} % ({{ occupation.floor_5 }} / 275
-                <i class="fas fa-male"></i>)
-            </p>
-        </div>
-        <div class="col-sm-6">
-            <div class="progress" style="height: 20px;">
-                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{ percentages[1] }}%;"
-                    aria-valuenow='0' aria-valuemin="0" aria-valuemax="100">{{ percentages[1] }} %</div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-3">Floor 4: </div>
-        <div class="col-sm-3">
-            <p> {{ percentages[2] }} % ({{ occupation.floor_4 }} / 333
-                <i class="fas fa-male"></i>)
-            </p>
-        </div>
-        <div class="col-sm-6">
-            <div class="progress" style="height: 20px;">
-                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{ percentages[2] }}%;"
-                    aria-valuenow='0' aria-valuemin="0" aria-valuemax="100">{{ percentages[2] }} %</div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-3">Floor 3:
-            <span class="text-muted inline-block" data-toggle="tooltip" title="Silent floor">
-                <i class="fas fa-question-circle"></i>
-            </span>
-        </div>
-        <div class="col-sm-3">
-            <p> {{ percentages[3] }} % ({{ occupation.floor_3 }} / 331
-                <i class="fas fa-male"></i>)
-            </p>
-        </div>
-        <div class="col-sm-6">
-            <div class="progress" style="height: 20px;">
-                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{ percentages[3] }}%;"
-                    aria-valuenow='0' aria-valuemin="0" aria-valuemax="100">{{ percentages[3] }} %</div>
-            </div>
-        </div>
-    </div>
+    <!-- <div class="jumbotron">
+        <h1 class="display-4">Now
+        </h1>
 
-    <br>
-    <br>
-    <br> -->
-    <div class="row">
-        <div class="col-sm-12">
-            <table class="table" align='top'>
-                <thead>
-                    <tr>
-                        <th scope="col">Floor #</th>
-                        <th scope="col">Occupation</th>
-                        <th scope="col">No. of people</th>
-                        <th scope="col">Occupation progress
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">6th
-                            <span class="text-muted inline-block ml-1" data-toggle="tooltip" title="Silent floor">
-                                <i class="fas fa-volume-off"></i>
-                            </span>
-                        </th>
-                        <td>{{ percentages[0] }} % </td>
-                        <td><b>{{ occupation.floor_6 }}</b> / 323
-                            <i class="fas fa-male"></i>
-                        </td>
-                        <td>
-                            <div class="progress" style="height: 20px;">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{ percentages[0] }}%;"
-                                    aria-valuenow='0' aria-valuemin="0" aria-valuemax="100">{{ percentages[0] }} %</div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5th
-                            <span class="text-muted inline-block ml-1" data-toggle="tooltip" title="Non-silent floor">
-                                <i class="fas fa-volume-down"></i>
-                            </span>
-                        </th>
-                        <td>{{ percentages[1] }} %</td>
-                        <td><b>{{ occupation.floor_5 }}</b> / 275
-                            <i class="fas fa-male"></i>
-                        </td>
-                        <td>
-                            <div class="progress" style="height: 20px;">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{ percentages[1] }}%;"
-                                    aria-valuenow='0' aria-valuemin="0" aria-valuemax="100">{{ percentages[1] }} %</div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4th
-                            <span class="text-muted inline-block ml-1" data-toggle="tooltip" title="Non-silent floor">
-                                <i class="fas fa-volume-down"></i>
-                            </span>
-                        </th>
-                        <td>{{ percentages[2] }} %</td>
-                        <td><b>{{ occupation.floor_4 }}</b> / 333
-                            <i class="fas fa-male"></i>
-                        </td>
-                        <td>
-                            <div class="progress" style="height: 20px;">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{ percentages[2] }}%;"
-                                    aria-valuenow='0' aria-valuemin="0" aria-valuemax="100">{{ percentages[2] }} %</div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3rd
-                            <span class="text-muted inline-block ml-1" data-toggle="tooltip" title="Silent floor">
-                                <i class="fas fa-volume-off"></i>
-                            </span>
-                        </th>
-                        <td>{{ percentages[3] }} %</td>
-                        <td><b>{{ occupation.floor_3 }}</b> / 331
-                            <i class="fas fa-male"></i>
-                        </td>
-                        <td>
-                            <div class="progress" style="height: 20px;">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{ percentages[3] }}%;"
-                                    aria-valuenow='0' aria-valuemin="0" aria-valuemax="100">{{ percentages[3] }} %</div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <p class="lead">Overall occupation: {{ occupation.overall_occ }} % (
+            <b>{{ occupation.sum_of_people }}</b> / 1262
+            <i class="fas fa-male"></i>) </p>
+        <i>Last updated: {{ moment(occupation.timestamp).fromNow() }}.</i>
+        <hr class="my-4">
+        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <div class="progress" style="height: 20px;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: {{ occupation.overall_occ }}%;"
+                aria-valuemin="0" aria-valuemax="100">{{ occupation.overall_occ }} %</div>
+        </div>
+    </div> -->
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Is there a place in NTK?</h1>
+            <p class="lead">Find out how occupied NTK is right now and how occupied it was in the last days.</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Now</h2>
+            <h5 class="card-subtitle mb-2 text-muted small">
+                <i>Last updated {{ moment(occupation.timestamp).fromNow() }}.</i>
+            </h5>
+        </div>
+        <!-- <h2>Now</h2> -->
+        <div class="card-body">
+            <!-- <h2 class="card-title">Now</h2>
+            <h5 class="card-subtitle mb-2 text-muted small">
+                <i>Last updated {{ moment(occupation.timestamp).fromNow() }}.</i>
+            </h5>
+            <br> -->
+            <h4 style="display: inline-block;">Overall occupation: {{ occupation.overall_occ }} % (
+                <b>{{ occupation.sum_of_people }}</b> / 1262
+                <i class="fas fa-male"></i>) </h4>
+            <!-- <p class="small ml-2" style="display: inline-block;">
+                <i>Last updated: {{ moment(occupation.timestamp).fromNow() }}.</i>
+            </p> -->
+
+            <div class="progress" style="height: 20px;">
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: {{ occupation.overall_occ }}%;"
+                    aria-valuemin="0" aria-valuemax="100">{{ occupation.overall_occ }} %</div>
+            </div>
+
+            <br>
+            <br>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table" align='top'>
+                        <thead>
+                            <tr>
+                                <th scope="col">Floor #</th>
+                                <th scope="col">Occupation</th>
+                                <th scope="col">No. of people</th>
+                                <th scope="col">Occupation progress
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">6th
+                                    <span class="text-muted inline-block ml-1" data-toggle="tooltip" title="Silent floor">
+                                        <i class="fas fa-volume-off"></i>
+                                    </span>
+                                </th>
+                                <td>{{ occupation.floor_6_perc }} % </td>
+                                <td>
+                                    <b>{{ occupation.floor_6 }}</b> / 323
+                                    <i class="fas fa-male"></i>
+                                </td>
+                                <td>
+                                    <div class="progress" style="height: 20px;">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{ occupation.floor_6_perc  }}%;"
+                                            aria-valuenow='0' aria-valuemin="0" aria-valuemax="100">{{ occupation.floor_6_perc }} %</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">5th
+                                    <span class="text-muted inline-block ml-1" data-toggle="tooltip" title="Non-silent floor">
+                                        <i class="fas fa-volume-down"></i>
+                                    </span>
+                                </th>
+                                <td>{{ occupation.floor_5_perc }} %</td>
+                                <td>
+                                    <b>{{ occupation.floor_5 }}</b> / 275
+                                    <i class="fas fa-male"></i>
+                                </td>
+                                <td>
+                                    <div class="progress" style="height: 20px;">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{ occupation.floor_5_perc }}%;"
+                                            aria-valuenow='0' aria-valuemin="0" aria-valuemax="100">{{ occupation.floor_5_perc }} %</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">4th
+                                    <span class="text-muted inline-block ml-1" data-toggle="tooltip" title="Non-silent floor">
+                                        <i class="fas fa-volume-down"></i>
+                                    </span>
+                                </th>
+                                <td>{{ occupation.floor_4_perc }} %</td>
+                                <td>
+                                    <b>{{ occupation.floor_4 }}</b> / 333
+                                    <i class="fas fa-male"></i>
+                                </td>
+                                <td>
+                                    <div class="progress" style="height: 20px;">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{ occupation.floor_4_perc }}%;"
+                                            aria-valuenow='0' aria-valuemin="0" aria-valuemax="100">{{ occupation.floor_4_perc }} %</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3rd
+                                    <span class="text-muted inline-block ml-1" data-toggle="tooltip" title="Silent floor">
+                                        <i class="fas fa-volume-off"></i>
+                                    </span>
+                                </th>
+                                <td>{{ occupation.floor_3_perc }} %</td>
+                                <td>
+                                    <b>{{ occupation.floor_3 }}</b> / 331
+                                    <i class="fas fa-male"></i>
+                                </td>
+                                <td>
+                                    <div class="progress" style="height: 20px;">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: {{ occupation.floor_3_perc }}%;"
+                                            aria-valuenow='0' aria-valuemin="0" aria-valuemax="100">{{ occupation.floor_3_perc }} %</div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>

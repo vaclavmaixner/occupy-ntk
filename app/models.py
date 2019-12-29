@@ -10,6 +10,12 @@ class Occupation(db.Model):
     floor_5 = db.Column(db.Integer())
     floor_4 = db.Column(db.Integer())
     floor_3 = db.Column(db.Integer())
+    sum_of_people = db.Column(db.Integer())
+    floor_6_perc = db.Column(db.Integer())
+    floor_5_perc = db.Column(db.Integer())
+    floor_4_perc = db.Column(db.Integer())
+    floor_3_perc = db.Column(db.Integer())
+    overall_occ = db.Column(db.Integer())
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
     def __repr__(self):

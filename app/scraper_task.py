@@ -64,6 +64,8 @@ def run_scraper():
     soup = BeautifulSoup(r.text, 'html.parser')
 
     occupation = soup.find_all('div', {'class': 'progress-bar'})
-    floors_people = scrape(occupation)[0]
-    return floors_people
-    # push_to_db(floors_people)
+    # floors_people = scrape(occupation)[0]
+    # floors_percentages_out = scrape(occupation[1])
+    # overall_occ = scrape(occupation[2])
+
+    return scrape(occupation)
