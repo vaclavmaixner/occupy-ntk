@@ -9,6 +9,7 @@ from flask_admin.contrib.fileadmin import FileAdmin
 
 from apscheduler.schedulers.background import BackgroundScheduler
 from app import scraper_task
+from flask_moment import Moment
 
 # def sensor():
 #     """ Function for test purposes. """
@@ -18,6 +19,7 @@ app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+moment = Moment(app)
 
 from app import routes, models
 from app.models import Occupation

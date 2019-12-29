@@ -12,6 +12,10 @@ import numpy as np
 from app import scraper_task
 from app.models import Occupation
 
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
+
+
 
 def push_to_db(no_people):
     occupation = Occupation(
@@ -39,11 +43,14 @@ def index():
     # db.session.add(occupation)
     # db.session.commit()
 
-    # history = 
+    history = Occupation.query.order_by(Occupation.id.desc()).limit(10)
 
-    return render_template('index.html', occupation=occupation, percentages=percentages, overall_occ=overall_occ, sum_of_people=sum_of_people)
+    return render_template('index.html', occupation=occupation, percentages=percentages, overall_occ=overall_occ, sum_of_people=sum_of_people, history=history)
 # return 'hello'
 
+@app.route('/plot', methods=["GET"])
+def plot_view():
+    pass
 
 # @app.route('/news/<int:id>')
 # def news_article(id):
