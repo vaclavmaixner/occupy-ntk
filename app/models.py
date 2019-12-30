@@ -20,3 +20,6 @@ class Occupation(db.Model):
 
     def __repr__(self):
         return '<Occupation {}>'.format(self.timestamp)
+    
+    def get_tuple_sum_of_people(self):
+        return (self.timestamp.date, self.sum_of_people)

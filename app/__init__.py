@@ -12,6 +12,19 @@ from app import scraper_task
 from flask_moment import Moment
 from flask_bootstrap import Bootstrap
 
+from bokeh.embed import server_document, components
+from bokeh.layouts import column, row, widgetbox
+from bokeh.models import ColumnDataSource
+from bokeh.models.tools import HoverTool
+from bokeh.models.widgets import Select
+from bokeh.plotting import figure
+from bokeh.server.server import Server
+from bokeh.themes import Theme
+from tornado.ioloop import IOLoop
+from bokeh.palettes import inferno
+from bokeh.transform import factor_cmap
+from bokeh.io import curdoc
+
 # def sensor():
 #     """ Function for test purposes. """
 #     print("Scheduler is alive!")

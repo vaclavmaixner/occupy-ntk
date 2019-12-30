@@ -142,12 +142,13 @@
     <div class="card">
         <div class="card-header">
             <h2 class="card-title">History</h2>
-            <h5 class="card-subtitle mb-2 text-muted small">
+            <!-- <h5 class="card-subtitle mb-2 text-muted small">
                 <i>Last updated {{ moment(occupation.timestamp).fromNow() }}.</i>
-            </h5>
+            </h5> -->
         </div>
         <!-- <h2>Now</h2> -->
         <div class="card-body">
+            {{ script|safe }} {{ div|safe }}
         </div>
     </div>
     <!-- <h2>History</h2>
@@ -169,7 +170,7 @@
         </div>
         <!-- <h2>Now</h2> -->
         <div class="card-body">
-            <p>Hi.</p>
+            <p></p>
         </div>
     </div>
 </div>
