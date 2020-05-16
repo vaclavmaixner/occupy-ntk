@@ -12,19 +12,6 @@ from app import scraper_task
 from flask_moment import Moment
 from flask_bootstrap import Bootstrap
 
-from bokeh.embed import server_document, components
-from bokeh.layouts import column, row, widgetbox
-from bokeh.models import ColumnDataSource
-from bokeh.models.tools import HoverTool
-from bokeh.models.widgets import Select
-from bokeh.plotting import figure
-from bokeh.server.server import Server
-from bokeh.themes import Theme
-from tornado.ioloop import IOLoop
-from bokeh.palettes import inferno
-from bokeh.transform import factor_cmap
-from bokeh.io import curdoc
-
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -41,22 +28,48 @@ admin.add_view(ModelView(Occupation, db.session))
 from app import scraper_task
 
 def run_scraper():
+    # occ_list contains percentages of occupation scraped from website
     occ_list = scraper_task.run_scraper()
     
-    occupation = Occupation(floor_6 = occ_list[0][0], floor_5 = occ_list[0][1],
-    floor_4 = occ_list[0][2], floor_3 = occ_list[0][3], floor_6_perc=occ_list[1][0],
-    floor_5_perc=occ_list[1][1], floor_4_perc=occ_list[1][2], floor_3_perc=occ_list[1][3],
-    overall_occ=occ_list[2], sum_of_people=int(occ_list[3]))
+    occupation = Occupation(floor_6_perc=occ_list[0],
+    floor_5_perc=occ_list[1], floor_4_perc=occ_list[2], floor_3_perc=occ_list[3])
+    
     db.session.add(occupation)
     db.session.commit()
 
 
-sched = BackgroundScheduler()
-sched.add_job(run_scraper,'cron',hour='8-23', minute='*/5')
-sched.start()
+# sched = BackgroundScheduler()
+# sched.add_job(run_scraper,'cron',hour='8-23', minute='*/5')
+# sched.start()
 
+
+# push dummy data into database
+import numpy as np
 import pandas as pd
 
-def add_dummy_data(length):
-    pass
+LENGTH = 4000
+def add_dummy_data(LENGTH):
+    num_rows_deleted = db.session.query(Occupation).delete()
+
+    dummy_times = pd.date_range('2020-03-01', periods=LENGTH, freq='5T')
+    dummy_occupations = np.random.randint(0,100,size=(LENGTH, 4)).astype(np.int32)
+
+    for datapoint in range(LENGTH):
+        # print(dummy_times[datapoint])
+        # print(dummy_occupations[datapoint][0])
+
+        # print(dummy_occupations[datapoint][1])
+
+        dummy_occupation = Occupation(floor_6_perc=int(dummy_occupations[datapoint][0]),
+        floor_5_perc=int(dummy_occupations[datapoint][1]),
+        floor_4_perc=int(dummy_occupations[datapoint][2]),
+        floor_3_perc=int(dummy_occupations[datapoint][3]),
+        timestamp=dummy_times[datapoint])
+        
+        db.session.add(dummy_occupation)
+    
+    
+    db.session.commit()
+
+add_dummy_data(LENGTH)
     

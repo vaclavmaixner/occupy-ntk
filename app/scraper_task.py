@@ -4,13 +4,6 @@ import re
 import numpy as np
 
 
-r = requests.get('https://www.techlib.cz/cs/83028-mista-ke-studiu')
-
-soup = BeautifulSoup(r.text, 'html.parser')
-
-occupation = soup.find_all('div', {'class': 'progress-bar'})
-
-
 def perc_to_people(floors_percentages):
     floors_percentages[:] = [x/100 for x in floors_percentages]
 
@@ -40,14 +33,8 @@ def scrape(occupation):
         floors_percentages.append(int(floor_occ))
         floors_percentages_out.append(int(floor_occ))
 
-    TOTAL_CAPACITY = 1262
-
-    no_people = perc_to_people(floors_percentages)
-    sum_of_people = round(np.sum(no_people))
-    overall_occ = int(round(np.sum(no_people)/TOTAL_CAPACITY * 100))
+    return floors_percentages_out
     
-    return no_people, floors_percentages_out, overall_occ, sum_of_people
-
 
 def run_scraper():
     r = requests.get('https://www.techlib.cz/cs/83028-mista-ke-studiu')

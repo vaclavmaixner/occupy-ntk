@@ -1,20 +1,5 @@
 {% extends "base.html" %} {% block content %}
 <div class="container mt-2">
-    <!-- <div class="jumbotron">
-        <h1 class="display-4">Now
-        </h1>
-
-        <p class="lead">Overall occupation: {{ occupation.overall_occ }} % (
-            <b>{{ occupation.sum_of_people }}</b> / 1262
-            <i class="fas fa-male"></i>) </p>
-        <i>Last updated: {{ moment(occupation.timestamp).fromNow() }}.</i>
-        <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <div class="progress" style="height: 20px;">
-            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: {{ occupation.overall_occ }}%;"
-                aria-valuemin="0" aria-valuemax="100">{{ occupation.overall_occ }} %</div>
-        </div>
-    </div> -->
     <div class="jumbotron jumbotron-fluid pt-3 pb-3">
         <div class="container">
             <h1 class="display-4">Is there a place in NTK?</h1>
@@ -30,17 +15,14 @@
     <div class="card">
         <div class="card-header">
             <h2 class="card-title">Now</h2>
-            <!-- <h5 class="card-subtitle mb-2 text-muted small">
-                <i>Last updated {{ moment(occupation.timestamp).fromNow() }}.</i>
-            </h5> -->
         </div>
         <div class="card-body">
-            <h4 style="display: inline-block;">Overall occupation: {{ occupation.overall_occ }} % (
+            <h4 style="display: inline-block;">Overall occupation: {{ occupation.get_overall_perc() }} % (
                 <b>{{ occupation.sum_of_people }}</b> / 1262
                 <i class="fas fa-male"></i>) </h4>
             <div class="progress" style="height: 20px;">
                 <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: {{ occupation.overall_occ }}%;"
-                    aria-valuemin="0" aria-valuemax="100">{{ occupation.overall_occ }} %</div>
+                    aria-valuemin="0" aria-valuemax="100">{{ occupation.get_overall_perc() }} %</div>
             </div>
             <br>
             <div class="row">
@@ -64,7 +46,7 @@
                                 </th>
                                 <td>{{ occupation.floor_6_perc }} % </td>
                                 <td>
-                                    <b>{{ occupation.floor_6 }}</b> / 323
+                                    <b>{{ occupation.get_number_of_people()['floor_6'] }}</b> / 323
                                     <i class="fas fa-male"></i>
                                 </td>
                                 <td>
@@ -82,7 +64,7 @@
                                 </th>
                                 <td>{{ occupation.floor_5_perc }} %</td>
                                 <td>
-                                    <b>{{ occupation.floor_5 }}</b> / 275
+                                    <b>{{ occupation.get_number_of_people()['floor_5'] }}</b> / 275
                                     <i class="fas fa-male"></i>
                                 </td>
                                 <td>
@@ -100,7 +82,7 @@
                                 </th>
                                 <td>{{ occupation.floor_4_perc }} %</td>
                                 <td>
-                                    <b>{{ occupation.floor_4 }}</b> / 333
+                                    <b>{{ occupation.get_number_of_people()['floor_4'] }}</b> / 333
                                     <i class="fas fa-male"></i>
                                 </td>
                                 <td>
@@ -118,7 +100,7 @@
                                 </th>
                                 <td>{{ occupation.floor_3_perc }} %</td>
                                 <td>
-                                    <b>{{ occupation.floor_3 }}</b> / 331
+                                    <b>{{ occupation.get_number_of_people()['floor_3'] }}</b> / 331
                                     <i class="fas fa-male"></i>
                                 </td>
                                 <td>
@@ -139,26 +121,61 @@
     </div>
 </div>
 <div class="container mt-4">
-    <div class="card">
-        <div class="card-header">
-            <h2 class="card-title">History</h2>
-            <!-- <h5 class="card-subtitle mb-2 text-muted small">
-                <i>Last updated {{ moment(occupation.timestamp).fromNow() }}.</i>
-            </h5> -->
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    Last 4 hours
+                    <button class="btn btn-success float-right" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                        aria-controls="collapseOne">
+                        toggle
+                    </button>
+                </h2>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="card-body">
+                        {{ script_4hours|safe }} {{ div_4hours|safe }}
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- <h2>Now</h2> -->
-        <div class="card-body">
-            {{ script|safe }} {{ div|safe }}
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                    Last 24 hours
+                    <button class="btn btn-success float-right" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+                        aria-controls="collapseTwo">
+                        toggle
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    {{ script_24hours|safe }} {{ div_24hours|safe }}
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                    Last week
+                    <button class="btn btn-success float-right" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true"
+                        aria-controls="collapseThree">
+                        toggle
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    {{ script_week|safe }} {{ div_week|safe }}
+                </div>
+            </div>
         </div>
     </div>
-    <!-- <h2>History</h2>
-    <div class="progress" style="height: 20px;">
-        <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0"
-            aria-valuemax="100">25 %</div>
-    </div>
-    {% for datapoint in history %}
-    <p>{{ datapoint.floor_3 }}</p>
-    {% endfor %} -->
+    <!-- </div>
+    </div> -->
 </div>
 <div class="container mt-4">
     <div class="card">
@@ -167,6 +184,7 @@
             <h5 class="card-subtitle mb-2 text-muted small">
                 <i>How to interpret this data.</i>
             </h5>
+
         </div>
         <!-- <h2>Now</h2> -->
         <div class="card-body">
