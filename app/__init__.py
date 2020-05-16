@@ -25,9 +25,6 @@ from bokeh.palettes import inferno
 from bokeh.transform import factor_cmap
 from bokeh.io import curdoc
 
-# def sensor():
-#     """ Function for test purposes. """
-#     print("Scheduler is alive!")
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -58,3 +55,8 @@ sched = BackgroundScheduler()
 sched.add_job(run_scraper,'cron',hour='8-23', minute='*/5')
 sched.start()
 
+import pandas as pd
+
+def add_dummy_data(length):
+    pass
+    

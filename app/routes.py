@@ -62,7 +62,6 @@ def index():
         sum_col.append(h.sum_of_people + 1)
     
     fig = figure(plot_width=800, plot_height=400, x_axis_type='datetime', title='Occupation in last 2 hrs')
-    # , tools="hover", tooltips='$name @time_col')
     fig.vbar(
         x=time_col,
         top=sum_col,
@@ -74,13 +73,9 @@ def index():
 
 
     return render_template('index.html', occupation=occupation, history=history, script=script, div=div)
-# return 'hello'
+
 
 @app.route('/plot', methods=["GET"])
 def plot_view():
     pass
 
-# @app.route('/news/<int:id>')
-# def news_article(id):
-#     article = Occupation.query.get_or_404(id)
-#     return render_template('news-post.html', articles=[article])
