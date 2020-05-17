@@ -32,22 +32,21 @@ TARGET_URL = 'https://www.techlib.cz/cs/83028-mista-ke-studiu'
 
 
 def run_scraper():
-    # occ_list contains percentages of occupation scraped from website
-    r = requests.get(TARGET_URL)
+  # occ_list contains percentages of occupation scraped from website
+  r = requests.get(TARGET_URL)
 
-    occ_list = scraper_task.run_scraper(r.text)
+  occ_list = scraper_task.run_scraper(r.text)
 
-    occupation = Occupation(floor_6_perc=occ_list[0],
-                            floor_5_perc=occ_list[1], floor_4_perc=occ_list[2], floor_3_perc=occ_list[3])
+  occupation = Occupation(floor_6_perc=occ_list[0],
+                          floor_5_perc=occ_list[1], floor_4_perc=occ_list[2], floor_3_perc=occ_list[3])
 
-    db.session.add(occupation)
-    db.session.commit()
+  db.session.add(occupation)
+  db.session.commit()
 
 
 # sched = BackgroundScheduler()
 # sched.add_job(run_scraper,'cron',hour='8-23', minute='*/5')
 # sched.start()
-
 
 
 # generate dummy data and push it into database
@@ -58,26 +57,26 @@ LENGTH = 4000
 
 
 def add_dummy_data(LENGTH):
-    num_rows_deleted = db.session.query(Occupation).delete()
+  num_rows_deleted = db.session.query(Occupation).delete()
 
-    dummy_times = pd.date_range('2020-03-01', periods=LENGTH, freq='5T')
-    dummy_occupations = np.random.randint(
-        0, 100, size=(LENGTH, 4)).astype(np.int32)
+  dummy_times = pd.date_range('2020-03-01', periods=LENGTH, freq='5T')
+  dummy_occupations = np.random.randint(
+      0, 100, size=(LENGTH, 4)).astype(np.int32)
 
-    for datapoint in range(LENGTH):
+  for datapoint in range(LENGTH):
 
-        dummy_occupation = Occupation(floor_6_perc=int(dummy_occupations[datapoint][0]),
-                                      floor_5_perc=int(
-                                          dummy_occupations[datapoint][1]),
-                                      floor_4_perc=int(
-                                          dummy_occupations[datapoint][2]),
-                                      floor_3_perc=int(
-                                          dummy_occupations[datapoint][3]),
-                                      timestamp=dummy_times[datapoint])
+    dummy_occupation = Occupation(floor_6_perc=int(dummy_occupations[datapoint][0]),
+                                  floor_5_perc=int(
+                                      dummy_occupations[datapoint][1]),
+                                  floor_4_perc=int(
+                                      dummy_occupations[datapoint][2]),
+                                  floor_3_perc=int(
+                                      dummy_occupations[datapoint][3]),
+                                  timestamp=dummy_times[datapoint])
 
-        db.session.add(dummy_occupation)
+    db.session.add(dummy_occupation)
 
-    db.session.commit()
+  db.session.commit()
 
 
 add_dummy_data(LENGTH)
