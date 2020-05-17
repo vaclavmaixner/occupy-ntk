@@ -18,3 +18,10 @@
 html {
   scroll-behavior: smooth;
 }
+
+.footer {
+  margin-top: 100px; /* negative value of footer height */
+  height: 150px;
+  /*background-color: rgb(92,184,92);*/
+  background-color: rgb(247, 247, 247) ;
+} 

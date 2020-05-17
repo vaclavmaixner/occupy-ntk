@@ -33,17 +33,22 @@ def index():
     occupation = occupations[0]
 
     history_4hours = Occupation.query.order_by(Occupation.id.desc()).limit(48)
-    history_24hours = Occupation.query.order_by(Occupation.id.desc()).limit(288)
+    history_24hours = Occupation.query.order_by(
+        Occupation.id.desc()).limit(288)
     history_week = Occupation.query.order_by(Occupation.id.desc()).limit(2016)
 
-    script_4hours, div_4hours = components(plotting.plot_4hours(history_4hours))
-    script_24hours, div_24hours = components(plotting.plot_24hours(history_24hours))
+    script_4hours, div_4hours = components(
+        plotting.plot_4hours(history_4hours))
+    script_24hours, div_24hours = components(
+        plotting.plot_24hours(history_24hours))
     script_week, div_week = components(plotting.plot_week(history_week))
 
-    week_before = datetime.today() - timedelta(days = 7)
-    week_before_data = Occupation.query.filter(Occupation.timestamp == week_before).all()
+    week_before = datetime.today() - timedelta(days=7)
+    week_before_data = Occupation.query.filter(
+        Occupation.timestamp == week_before).all()
 
     return render_template('index.html', occupation=occupation,
-    script_4hours=script_4hours, div_4hours=div_4hours,
-    script_24hours=script_24hours, div_24hours=div_24hours,
-    script_week=script_week, div_week=div_week)
+                           script_4hours=script_4hours, div_4hours=div_4hours,
+                           script_24hours=script_24hours, div_24hours=div_24hours,
+                           script_week=script_week, div_week=div_week,
+                           week_before_data=week_before_data)

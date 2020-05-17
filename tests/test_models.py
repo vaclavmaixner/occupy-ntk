@@ -21,6 +21,8 @@ def test_new_occupation():
     assert new_occ.floor_3_perc == 140
     assert new_occ.timestamp == datetime(2001, 1, 1)
 
+    assert repr(new_occ) == '<Occupation {}>'.format(datetime(2001, 1, 1))
+
 def test_zero_occupation():
     new_occ = new_occupation(id=0,f6=0,f5=0,f4=0,f3=0,ts=datetime(2001, 1, 30))
     

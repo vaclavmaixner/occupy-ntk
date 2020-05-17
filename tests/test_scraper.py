@@ -7,3 +7,7 @@ def test_scraper():
     scraper = scraper_task.run_scraper(local_html)
 
     assert scraper == [71, 41, 31, 61]
+
+def test_perc_to_people():
+    no_people = scraper_task.perc_to_people([10,20,30,40])
+    assert no_people == [32, 55, 100, 132]
