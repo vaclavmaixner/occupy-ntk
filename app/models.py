@@ -30,7 +30,8 @@ class Occupation(db.Model):
         return [self.floor_6_perc, self.floor_5_perc, self.floor_4_perc, self.floor_3_perc]
 
     def get_sum_of_people(self):
-        sum_of_people = round(np.sum(self.get_floors_as_list()))
+        floor_occupations = np.sum(list(self.get_number_of_people().values()))
+        sum_of_people = int(round(floor_occupations))
         return sum_of_people
 
     def get_overall_perc(self):
@@ -38,4 +39,4 @@ class Occupation(db.Model):
         return overall_perc
 
     def get_tuple_sum_of_people(self):
-        return (self.timestamp.date, self.sum_of_people)
+        return (self.timestamp, self.get_sum_of_people())

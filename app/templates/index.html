@@ -18,10 +18,10 @@
         </div>
         <div class="card-body">
             <h4 style="display: inline-block;">Overall occupation: {{ occupation.get_overall_perc() }} % (
-                <b>{{ occupation.sum_of_people }}</b> / 1262
+                <b>{{ occupation.get_sum_of_people() }}</b> / 1262
                 <i class="fas fa-male"></i>) </h4>
             <div class="progress" style="height: 20px;">
-                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: {{ occupation.overall_occ }}%;"
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: {{ occupation.get_overall_perc() }}%;"
                     aria-valuemin="0" aria-valuemax="100">{{ occupation.get_overall_perc() }} %</div>
             </div>
             <br>

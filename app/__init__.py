@@ -26,10 +26,15 @@ admin = Admin(app, name='Admin Zone')
 admin.add_view(ModelView(Occupation, db.session))
 
 from app import scraper_task
+import requests
+
+TARGET_URL = 'https://www.techlib.cz/cs/83028-mista-ke-studiu'
 
 def run_scraper():
     # occ_list contains percentages of occupation scraped from website
-    occ_list = scraper_task.run_scraper()
+    r = requests.get(TARGET_URL)
+
+    occ_list = scraper_task.run_scraper(r.text)
     
     occupation = Occupation(floor_6_perc=occ_list[0],
     floor_5_perc=occ_list[1], floor_4_perc=occ_list[2], floor_3_perc=occ_list[3])
@@ -38,12 +43,13 @@ def run_scraper():
     db.session.commit()
 
 
-# sched = BackgroundScheduler()
-# sched.add_job(run_scraper,'cron',hour='8-23', minute='*/5')
-# sched.start()
+
+sched = BackgroundScheduler()
+sched.add_job(run_scraper,'cron',hour='8-23', minute='*/5')
+sched.start()
 
 
-# push dummy data into database
+# generate dummy data and push it into database
 import numpy as np
 import pandas as pd
 
