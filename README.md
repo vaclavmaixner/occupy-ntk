@@ -1,6 +1,6 @@
 # Occupy NTK
 
-This app periodically scrapes the website of NTK (https://www.techlib.cz/en/) for data about how occupied it is by visitors. It offers more insight by combining this data with information about NTT and by providing graphs of historical occupancy.
+This app periodically scrapes the website of NTK (https://www.techlib.cz/en/) for data about how occupied it is by visitors. It offers more insight by combining this data with information about NTK and by providing graphs of historical occupancy.
 
 ![alt text](resources/occupy_ntk.png "Title")
 
@@ -22,7 +22,7 @@ The app should then deployed to local server.
 
 ## Setting up
 
-Make sure to turn the debugging mode of if you want to see the scraper from **\_\_init\_\_.py** work (debugging mode causes [double](https://stackoverflow.com/questions/25504149/why-does-running-the-flask-dev-server-run-itself-twice) scraping). Debugging mode can be turned of by writing
+Make sure to turn the debugging mode off if you want to see the scraper from **\_\_init\_\_.py** work (debugging mode causes [double](https://stackoverflow.com/questions/25504149/why-does-running-the-flask-dev-server-run-itself-twice) scraping). Debugging mode can be turned of by writing
 
 ```bash
 export FLASK_DEBUG=1 
