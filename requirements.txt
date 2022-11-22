@@ -74,7 +74,7 @@ pathspec==0.7.0
 patsy==0.5.1
 pexpect==4.8.0
 pickleshare==0.7.5
-Pillow==7.1.1
+Pillow==9.3.0
 plotly==4.5.4
 pluggy==0.13.1
 prometheus-client==0.7.1
