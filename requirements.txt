@@ -11,7 +11,7 @@ backcall==0.1.0
 black==19.10b0
 bleach==3.1.1
 cachetools==4.0.0
-certifi==2019.11.28
+certifi==2022.12.7
 cffi==1.14.0
 cftime==1.1.1.2
 chardet==3.0.4
